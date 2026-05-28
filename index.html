@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A.Klimasy Cosmetic - интернет-магазин уходовой косметики для лица, тела, волос, рук и ног с удобным каталогом, фильтрами, избранным, корзиной и поддержкой.">
+  <title>A.Klimasy Cosmetic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <button class="promo-bar" type="button" data-open-modal="loyalty">Вступай в клуб привилегий A.Klimasy Cosmetic</button>
+    <div class="header-main" aria-label="Главная навигация">
+      <div class="header-left">
+        <button class="location" type="button" data-open-drawer="city" aria-label="Выбрать город">⌖ <span id="city-label">Выберите город</span></button>
+      </div>
+      <a class="brand" href="#top" aria-label="A.Klimasy Cosmetic">A.Klimasy</a>
+      <nav class="quick-actions" aria-label="Быстрые действия">
+        <button class="header-action is-ai" type="button" data-open-drawer="consultant" aria-label="Открыть ИИ-консультанта"><span class="action-icon icon-ai">AI</span></button>
+        <button class="header-action" type="button" data-open-drawer="support" aria-label="Поддержка"><span class="action-icon icon-support" aria-hidden="true"></span></button>
+        <button class="header-action with-badge" type="button" data-open-drawer="favorites" aria-label="Избранное"><span class="action-icon icon-favorite" aria-hidden="true"></span><span id="favorites-count">0</span></button>
+        <button class="header-action with-badge" type="button" data-open-drawer="cart" aria-label="Корзина"><span class="action-icon icon-cart" aria-hidden="true"></span><span id="cart-count">0</span></button>
+        <button class="header-action account-entry" type="button" data-open-drawer="account" aria-label="Открыть аккаунт"><span class="action-icon icon-account" aria-hidden="true"></span></button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-media" aria-hidden="true">
+        <img src="assets/hero-aklimasy-cosmetic.png" alt="">
+      </div>
+      <div class="hero-copy">
+        <p class="eyebrow">уходовая косметика</p>
+        <h1 id="hero-title">A.Klimasy Cosmetic</h1>
+      </div>
+    </section>
+
+    <section id="catalog" class="catalog-section" aria-labelledby="catalog-title">
+      <div class="section-heading">
+        <p class="eyebrow">каталог</p>
+        <h2 id="catalog-title">Подбор ухода</h2>
+      </div>
+
+      <form class="search-row" action="#" aria-label="Поиск по каталогу">
+        <label class="visually-hidden" for="search">Поиск товара</label>
+        <input id="search" type="search" placeholder="Поиск по названию, категории или текстуре">
+        <button class="button button-dark" type="button">Найти</button>
+      </form>
+
+      <div class="catalog-layout">
+        <aside class="filters" aria-label="Фильтры товаров">
+          <h3>Фильтры</h3>
+          <fieldset>
+            <legend>Цена</legend>
+            <label><input type="checkbox" checked> Указать диапазон</label>
+            <div class="range-labels"><span id="price-value">до 10 000 ₽</span><span>10 000 ₽</span></div>
+            <input id="price-range" type="range" min="100" max="10000" value="10000" aria-label="Максимальная цена">
+          </fieldset>
+          <fieldset>
+            <legend>Категория</legend>
+            <label><input type="checkbox" data-filter-category value="Все лицо"> Все лицо</label>
+            <label><input type="checkbox" data-filter-category value="T-зона"> T-зона</label>
+            <label><input type="checkbox" data-filter-category value="Кожа вокруг глаз"> Кожа вокруг глаз</label>
+            <label><input type="checkbox" data-filter-category value="Волосы"> Волосы</label>
+            <label><input type="checkbox" data-filter-category value="Руки"> Руки</label>
+            <label><input type="checkbox" data-filter-category value="Ноги"> Ноги</label>
+            <label><input type="checkbox" data-filter-category value="Тело"> Тело</label>
+          </fieldset>
+          <fieldset>
+            <legend>Текстура</legend>
+            <label><input type="checkbox" data-filter-texture value="Крем"> Крем</label>
+            <label><input type="checkbox" data-filter-texture value="Гель"> Гель</label>
+            <label><input type="checkbox" data-filter-texture value="Сыворотка"> Сыворотка</label>
+            <label><input type="checkbox" data-filter-texture value="Масло"> Масло</label>
+            <label><input type="checkbox" data-filter-texture value="Молочко"> Молочко</label>
+            <label><input type="checkbox" data-filter-texture value="Шампунь"> Шампунь</label>
+            <label><input type="checkbox" data-filter-texture value="Маска"> Маска</label>
+            <label><input type="checkbox" data-filter-texture value="Бальзам"> Бальзам</label>
+            <label><input type="checkbox" data-filter-texture value="Спрей"> Спрей</label>
+          </fieldset>
+        </aside>
+
+        <div class="products" aria-label="Список товаров">
+          <p class="loading-message">Загрузка каталога...</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+
+  <section class="modal" id="modal-loyalty" aria-hidden="true" inert aria-labelledby="loyalty-title" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button class="modal-close" type="button" data-close-drawer aria-label="Закрыть оформление карты">×</button>
+      <p class="eyebrow">клуб привилегий</p>
+      <h2 id="loyalty-title">Карта лояльности A.Klimasy Cosmetic</h2>
+      <p>Оформите карту, чтобы получать персональные предложения, бонусы за покупки и ранний доступ к новинкам.</p>
+      <form id="loyalty-form" class="drawer-form loyalty-form">
+        <label for="loyalty-name">Имя</label>
+        <input id="loyalty-name" name="name" type="text" placeholder="Ваше имя" minlength="2" autocomplete="name" required>
+        <label for="loyalty-phone">Телефон</label>
+        <input id="loyalty-phone" name="phone" type="tel" placeholder="+7 900 000-00-00" pattern="^\+?[0-9\s().-]{10,20}$" autocomplete="tel" title="Введите номер телефона, например +7 900 000-00-00" required>
+        <label for="loyalty-email">Email</label>
+        <input id="loyalty-email" name="email" type="email" placeholder="name@example.ru" autocomplete="email" required>
+        <button class="button button-dark" type="submit">Оформить карту</button>
+        <p class="form-status" id="loyalty-status" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <aside class="drawer" id="drawer-account" aria-hidden="true" inert aria-labelledby="drawer-account-title">
+    <div class="drawer-header">
+      <h2 id="drawer-account-title">Account</h2>
+      <button class="drawer-close" type="button" data-close-drawer aria-label="Закрыть окно аккаунта">×</button>
+    </div>
+    <div id="account-content" class="drawer-content"></div>
+  </aside>
+
+  <aside class="drawer" id="drawer-city" aria-hidden="true" inert aria-labelledby="drawer-city-title">
+    <div class="drawer-header">
+      <h2 id="drawer-city-title">Выбор города</h2>
+      <button class="drawer-close" type="button" data-close-drawer aria-label="Закрыть выбор города">×</button>
+    </div>
+    <label class="visually-hidden" for="city-search">Поиск города</label>
+    <input id="city-search" class="city-search" type="search" placeholder="Найти город" autocomplete="off">
+    <div class="city-list" aria-label="Список городов">
+      <button type="button" data-city="Москва">Москва</button>
+      <button type="button" data-city="Санкт-Петербург">Санкт-Петербург</button>
+      <button type="button" data-city="Казань">Казань</button>
+      <button type="button" data-city="Екатеринбург">Екатеринбург</button>
+      <button type="button" data-city="Новосибирск">Новосибирск</button>
+      <button type="button" data-city="Нижний Новгород">Нижний Новгород</button>
+      <button type="button" data-city="Самара">Самара</button>
+      <button type="button" data-city="Ростов-на-Дону">Ростов-на-Дону</button>
+      <button type="button" data-city="Краснодар">Краснодар</button>
+      <button type="button" data-city="Уфа">Уфа</button>
+      <button type="button" data-city="Пермь">Пермь</button>
+      <button type="button" data-city="Красноярск">Красноярск</button>
+      <button type="button" data-city="Воронеж">Воронеж</button>
+      <button type="button" data-city="Волгоград">Волгоград</button>
+      <button type="button" data-city="Сочи">Сочи</button>
+      <button type="button" data-city="Тюмень">Тюмень</button>
+      <button type="button" data-city="Омск">Омск</button>
+      <button type="button" data-city="Челябинск">Челябинск</button>
+      <button type="button" data-city="Иркутск">Иркутск</button>
+      <button type="button" data-city="Владивосток">Владивосток</button>
+    </div>
+    <p class="form-status" id="city-status" role="status"></p>
+  </aside>
+
+  <aside class="drawer" id="drawer-support" aria-hidden="true" inert aria-labelledby="drawer-support-title">
+    <div class="drawer-header">
+      <h2 id="drawer-support-title">Поддержка</h2>
+      <button class="drawer-close" type="button" data-close-drawer aria-label="Закрыть окно поддержки">×</button>
+    </div>
+    <form id="support-form" class="drawer-form">
+      <label for="drawer-support-name">Name</label>
+      <input id="drawer-support-name" name="name" type="text" placeholder="Имя" minlength="2" autocomplete="name" required>
+      <label for="drawer-support-email">Email</label>
+      <input id="drawer-support-email" name="email" type="email" placeholder="name@example.ru" autocomplete="email" required>
+      <label for="drawer-support-subject">Subject</label>
+      <input id="drawer-support-subject" name="subject" type="text" placeholder="Тема обращения" minlength="3" required>
+      <label for="drawer-support-message">Message</label>
+      <textarea id="drawer-support-message" name="message" rows="5" placeholder="Опишите вопрос" minlength="10" required></textarea>
+      <button class="button button-dark" type="submit">Отправить</button>
+      <p class="form-status" id="support-status" role="status"></p>
+    </form>
+  </aside>
+
+  <aside class="drawer consultant-drawer" id="drawer-consultant" aria-hidden="true" inert aria-labelledby="drawer-consultant-title">
+    <div class="drawer-header">
+      <h2 id="drawer-consultant-title">ИИ-консультант</h2>
+      <button class="drawer-close" type="button" data-close-drawer aria-label="Закрыть ИИ-консультанта">×</button>
+    </div>
+    <div class="consultant-chat">
+      <div id="consultant-messages" class="consultant-messages" aria-live="polite"></div>
+      <div id="consultant-options" class="consultant-options" aria-label="Варианты ответа"></div>
+      <form id="consultant-form" class="consultant-input-row">
+        <label class="visually-hidden" for="consultant-answer">Ответ консультанту</label>
+        <input id="consultant-answer" name="answer" type="text" placeholder="Напишите ответ или выберите вариант">
+        <button class="button button-dark" type="submit">Отправить</button>
+        <button class="button button-light" type="button" data-consultant-skip>Пропустить</button>
+      </form>
+      <p class="form-status" id="consultant-status" role="status"></p>
+      <div id="consultant-results" class="consultant-results" aria-live="polite"></div>
+    </div>
+  </aside>
+
+  <aside class="drawer" id="drawer-cart" aria-hidden="true" inert aria-labelledby="drawer-cart-title">
+    <div class="drawer-header">
+      <h2 id="drawer-cart-title">Корзина</h2>
+      <button class="drawer-close" type="button" data-close-drawer aria-label="Закрыть корзину">×</button>
+    </div>
+    <div id="cart-content" class="drawer-content"></div>
+  </aside>
+
+  <aside class="drawer" id="drawer-checkout" aria-hidden="true" inert aria-labelledby="drawer-checkout-title">
+    <div class="drawer-header">
+      <h2 id="drawer-checkout-title">Оформление заказа</h2>
+      <button class="drawer-close" type="button" data-close-drawer aria-label="Закрыть оформление заказа">×</button>
+    </div>
+    <form id="checkout-form" class="drawer-form">
+      <label for="checkout-email">Почта</label>
+      <input id="checkout-email" name="email" type="email" placeholder="name@example.ru" autocomplete="email" required>
+      <label for="checkout-phone">Номер</label>
+      <input id="checkout-phone" name="phone" type="tel" value="+7 " placeholder="+7 900 000-00-00" pattern="^\+?[0-9\s().-]{10,20}$" autocomplete="tel" title="Введите номер телефона, например +7 900 000-00-00" required>
+      <label for="checkout-name">Имя</label>
+      <input id="checkout-name" name="name" type="text" placeholder="Имя" minlength="2" autocomplete="name" required>
+      <label for="checkout-address">Адрес пункта выдачи</label>
+      <textarea id="checkout-address" name="pickup_address" rows="4" placeholder="Город, улица, дом, пункт выдачи" minlength="8" required></textarea>
+      <div id="checkout-loyalty-field" class="checkout-loyalty-field" hidden>
+        <label for="checkout-barcode">Номер штрихкода карты лояльности</label>
+        <input id="checkout-barcode" name="loyalty_barcode" type="text" inputmode="numeric" pattern="[0-9]{8,16}" placeholder="Штрихкод заполнится автоматически" autocomplete="off">
+        <small>Штрихкод карты лояльности подставляется автоматически, чтобы применить скидку.</small>
+      </div>
+      <button class="button button-dark" type="submit">Оформить заказ</button>
+      <p class="form-status" id="checkout-status" role="status"></p>
+    </form>
+  </aside>
+
+  <aside class="drawer" id="drawer-favorites" aria-hidden="true" inert aria-labelledby="drawer-favorites-title">
+    <div class="drawer-header">
+      <h2 id="drawer-favorites-title">Избранное</h2>
+      <button class="drawer-close" type="button" data-close-drawer aria-label="Закрыть избранное">×</button>
+    </div>
+    <div id="favorites-content" class="drawer-content"></div>
+  </aside>
+
+  <aside class="drawer product-modal" id="drawer-product" aria-hidden="true" inert aria-labelledby="drawer-product-title">
+    <div class="drawer-header">
+      <h2 id="drawer-product-title">Карточка товара</h2>
+      <button class="drawer-close" type="button" data-close-drawer aria-label="Закрыть карточку товара">×</button>
+    </div>
+    <div id="product-content" class="drawer-content"></div>
+  </aside>
+
+  <aside class="drawer" id="drawer-request" aria-hidden="true" inert aria-labelledby="drawer-request-title">
+    <div class="drawer-header">
+      <h2 id="drawer-request-title">Предложение товара</h2>
+      <button class="drawer-close" type="button" data-close-drawer aria-label="Закрыть заявку">×</button>
+    </div>
+    <form id="request-form" class="drawer-form">
+      <label for="drawer-request-product">Product name</label>
+      <input id="drawer-request-product" name="product_name" type="text" placeholder="Название продукта" minlength="2" required>
+      <label for="drawer-request-description">Description</label>
+      <textarea id="drawer-request-description" name="description" rows="5" placeholder="Почему стоит добавить товар" minlength="10" required></textarea>
+      <button class="button button-dark" type="submit">Отправить заявку</button>
+      <p class="form-status" id="request-status" role="status"></p>
+    </form>
+  </aside>
+
+  <aside class="drawer admin-drawer" id="drawer-admin" aria-hidden="true" inert aria-labelledby="drawer-admin-title">
+    <div class="drawer-header">
+      <h2 id="drawer-admin-title">Администратор</h2>
+      <button class="drawer-close" type="button" data-close-drawer aria-label="Закрыть админ-панель">×</button>
+    </div>
+    <div id="admin-content" class="drawer-content"></div>
+  </aside>
+
+  <footer class="site-footer" aria-label="Информация о магазине">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="footer-logo" href="#top">A.Klimasy Cosmetic</a>
+        <p>Уходовая косметика с подбором по категории, текстуре и цене.</p>
+      </div>
+      <nav class="footer-links" aria-label="Навигация в footer">
+        <a href="#catalog">Каталог</a>
+        <button type="button" data-open-drawer="support">Поддержка</button>
+        <a href="mailto:hello@aklimasy-cosmetic.ru">hello@aklimasy-cosmetic.ru</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 A.Klimasy Cosmetic</span>
+      <span>Online-магазин уходовой косметики</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
